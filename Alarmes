@@ -1,0 +1,76 @@
+package com.PI3_Chatbot; // pacote do seu projeto
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
+import android.os.Bundle;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+
+        // Configurar o adaptador para o ViewPager2
+        // Criaremos este adaptador a seguir
+        ViewPagerFragmentAdapter adapter = new ViewPagerFragmentAdapter(this);
+        viewPager.setAdapter(adapter);
+
+        // Conectar o TabLayout ao ViewPager2
+        new TabLayoutMediator(tabLayout, viewPager,
+                (tab, position) -> {
+                    switch (position) {
+                        case 0:
+                            tab.setText("Alarmes");
+                            break;
+                        case 1:
+                            tab.setText("Compras");
+                            break;
+                        case 2:
+                            tab.setText("Agenda Google");
+                            break;
+                        case 3:
+                            tab.setText("Tarefas Diárias");
+                            break;
+                    }
+                }).attach();
+
+        // **SAUDAÇÃO INICIAL E SOLICITAÇÃO DO NOME (Implementação inicial em um AlertDialog)**
+        // No Android, a primeira saudação e solicitação do nome geralmente
+        // são feitas com um AlertDialog ou em uma tela de introdução.
+        // Abaixo, um exemplo simples de AlertDialog:
+        showWelcomeDialog();
+    }
+
+    private void showWelcomeDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Bem Vindo ao seu Assistente Pessoal");
+        builder.setMessage("Para começarmos, diga seu nome:");
+
+        // Adiciona um campo de texto ao diálogo
+        final android.widget.EditText input = new android.widget.EditText(this);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            String nome = input.getText().toString();
+            if (nome.isEmpty()) {
+                nome = "Usuário"; // Nome padrão se nada for digitado
+            }
+            // Você pode armazenar este nome em SharedPreferences ou passá-lo para os Fragments, se necessário.
+            android.widget.Toast.makeText(this, "Olá, " + nome + "!", android.widget.Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        });
+        builder.setCancelable(false); // Impede que o diálogo seja fechado sem digitar o nome
+        builder.show();
+    }
+}
