@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+public class AssistentePessoal {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bem Vindo ao seu Assistente Pessoal");
+        System.out.print("Para começarmos diga seu Nome: ");
+        String nome = scanner.nextLine();
+        System.out.println("Olá, " + nome + "! O que vamos criar hoje? Opções:");
+        System.out.println("1. Alarmes para tomar remédio");
+        System.out.println("2. Lista de compras");
+        System.out.println("3. Usar agenda Google para agendar um compromisso");
+        System.out.println("4. Tarefas diárias");
+
+        int escolha = scanner.nextInt();
+        scanner.nextLine(); // Consumir a quebra de linha
+
+        switch (escolha) {
+            case 1:
+                criarAlarmesRemedio(scanner);
+                break;
+            case 2:
+                criarListaCompras(scanner);
+                break;
+            case 3:
+                agendarCompromissoGoogle(scanner);
+                break;
+            case 4:
+                gerenciarTarefasDiarias(scanner);
+                break;
+            default:
+                System.out.println("Opção inválida. Por favor, tente novamente.");
+        }
+
+        System.out.println("Obrigado por usar o Assistente Pessoal!");
+        scanner.close();
+    }
+
+    public static void criarAlarmesRemedio(Scanner scanner) {
+        System.out.println("Vamos configurar os alarmes para seus remédios.");
+        // Aqui você implementaria a lógica para criar e gerenciar alarmes
+        System.out.println("Funcionalidade de alarmes para remédio ainda não implementada.");
+    }
+
+    public static void criarListaCompras(Scanner scanner) {
+        System.out.println("Vamos criar sua lista de compras.");
+        // Aqui você implementaria a lógica para criar e gerenciar a lista de compras
+        System.out.println("Funcionalidade de lista de compras ainda não implementada.");
+    }
+
+    public static void agendarCompromissoGoogle(Scanner scanner) {
+        System.out.println("Vamos usar a agenda Google para agendar um compromisso.");
+        System.out.println("Para integrar com a Agenda Google, você precisará usar a API do Google Calendar.");
+        System.out.println("Esta é uma funcionalidade mais avançada e requer configuração de credenciais e autorização.");
+        System.out.println("Você gostaria de seguir com a configuração da API do Google Calendar? (sim/não)");
+        String resposta = scanner.nextLine();
+        if (resposta.equalsIgnoreCase("sim")) {
+            System.out.println("Por favor, consulte a documentação da API do Google Calendar para mais informações.");
+            // Aqui você guiaria o usuário sobre como configurar a API do Google Calendar
+        } else {
+            System.out.println("Ok, agendamento com a Google Calendar não será configurado agora.");
+        }
+    }
+
+    public static void gerenciarTarefasDiarias(Scanner scanner) {
+        System.out.println("Vamos gerenciar suas tarefas diárias.");
+        // Aqui você implementaria a lógica para criar e gerenciar tarefas diárias
+        System.out.println("Funcionalidade de tarefas diárias ainda não implementada.");
+    }
+}
