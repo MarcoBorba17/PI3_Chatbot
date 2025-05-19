@@ -1,0 +1,8 @@
+dependencies {
+    // ... outras dependências
+    implementation 'androidx.appcompat:appcompat:1.6.1' // Certifique-se que esta versão ou superior esteja
+    implementation 'com.google.android.material:material:1.11.0' // Certifique-se que esta versão ou superior esteja
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // ViewPager2 já deve ser incluído com as libs do AndroidX
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+}
