@@ -1,0 +1,41 @@
+-- Criar o banco de dados (se não existir)
+sqlite3 meu_assistente.db
+
+-- Criar a tabela usuarios
+CREATE TABLE usuarios (
+    id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    data_cadastro TEXT NOT NULL
+);
+
+-- Inserir dados na tabela usuarios
+INSERT INTO usuarios (nome, data_cadastro) VALUES ('Ana Silva', '2025-05-10 10:00:00');
+INSERT INTO usuarios (nome, data_cadastro) VALUES ('Pedro Oliveira', '2025-05-10 10:15:00');
+INSERT INTO usuarios (nome, data_cadastro) VALUES ('Mariana Souza', '2025-05-11 14:30:00');
+INSERT INTO usuarios (nome, data_cadastro) VALUES ('Lucas Ferreira', '2025-05-12 09:45:00');
+INSERT INTO usuarios (nome, data_cadastro) VALUES ('Juliana Costa', '2025-05-13 16:20:00');
+
+-- Criar a tabela testes
+CREATE TABLE testes (
+    id_teste INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_usuario INTEGER NOT NULL,
+    funcionalidade_testada TEXT NOT NULL,
+    data_teste TEXT NOT NULL,
+    avaliacao TEXT,
+    observacoes TEXT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+-- Inserir dados na tabela testes
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (1, 'Alarmes para remédio', '2025-05-14 11:00:00', 'Sucesso', 'Alarme configurado e disparado corretamente.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (1, 'Lista de compras', '2025-05-14 15:30:00', 'Sucesso', 'Adição e remoção de itens funcionando.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (2, 'Agenda Google', '2025-05-15 09:00:00', 'Falha', 'Não conseguiu conectar com a conta Google.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (2, 'Tarefas diárias', '2025-05-15 14:00:00', 'Parcial', 'Adição de tarefas funcionando, edição com bugs.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (3, 'Alarmes para remédio', '2025-05-15 16:45:00', 'Sucesso', 'Testou múltiplos alarmes.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (3, 'Lista de compras', '2025-05-16 10:20:00', 'Bug Encontrado', 'App crashou ao tentar salvar a lista.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (4, 'Agenda Google', '2025-05-16 13:00:00', 'Sucesso', 'Agendamento de um evento bem-sucedido.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (4, 'Tarefas diárias', '2025-05-16 14:15:00', 'Sucesso', 'Marcar como concluído funcionando.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (5, 'Alarmes para remédio', '2025-05-16 15:00:00', 'Sucesso', 'Testou a função de repetição de alarmes.');
+INSERT INTO testes (id_usuario, funcionalidade_testada, data_teste, avaliacao, observacoes) VALUES (5, 'Lista de compras', '2025-05-16 15:30:00', 'Sucesso', 'Compartilhamento da lista funcionando.');
+
+-- Você pode sair do shell do SQLite com .exit
